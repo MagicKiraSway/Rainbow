@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RGB Dark Alpha Site</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+      color: #fff;
+      overflow-x: hidden;
+    }
+    header {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+    }
+    h1 {
+      font-size: 3rem;
+      background: linear-gradient(to right, #ff0057, #00f2ff, #00ff88);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow 4s linear infinite;
+    }
+    @keyframes glow {
+      0% { text-shadow: 0 0 10px #ff0057; }
+      50% { text-shadow: 0 0 20px #00f2ff; }
+      100% { text-shadow: 0 0 10px #00ff88; }
+    }
+    .container {
+      padding: 4rem 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 1rem 0;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      transition: 0.3s;
+    }
+    .card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+    }
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>💠 RGB ALPHA DARK SITE 💠</h1>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <h2>🔥 Welcome to the RGB Zone</h2>
+      <p>This is a dark-themed site with beautiful alpha-glass and RGB gradients. Ideal for elite UI/UX experiments.</p>
+    </div>
+
+    <div class="card">
+      <h2>🌈 Inspired by Light, Forged in Shadow</h2>
+      <p>Every element glows softly and responds to motion. Hover to experience subtle lighting effects.</p>
+    </div>
+
+    <div class="card">
+      <h2>💡 Developer Tip</h2>
+      <p>Use <code>backdrop-filter</code> + <code>rgba</code> for modern glass-like UI combined with full RGB motion color.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    Designed by Господин ✦ 2025
+  </div>
+</body>
+</html>
