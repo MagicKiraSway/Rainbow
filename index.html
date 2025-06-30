@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RGB Dark Alpha Site</title>
+  <title>RGB Dark Alpha Site с оплатой</title>
   <style>
+    /* Стили из первого файла */
     * {
       margin: 0;
       padding: 0;
@@ -58,6 +59,96 @@
       font-size: 0.9rem;
       color: rgba(255, 255, 255, 0.4);
     }
+    
+    /* Стили оплаты */
+    .payment-card {
+      background-color: rgba(44, 30, 71, 0.8);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+      color: #d8cfff;
+    }
+    .btn {
+      background-color: #6d28d9;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+      margin-top: 0.5rem;
+    }
+    .btn:hover {
+      background-color: #7c3aed;
+    }
+    input[type="text"], input[type="number"] {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 0.375rem;
+      border: 1px solid #666;
+      background-color: #1a102b;
+      color: #e0e0f0;
+      margin-top: 0.3rem;
+    }
+    input[type="text"]:focus, input[type="number"]:focus {
+      outline: none;
+      border-color: #7c3aed;
+      box-shadow: 0 0 8px #7c3aed;
+    }
+    .modal {
+      background-color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      padding: 1rem;
+    }
+    .modal-content {
+      background-color: rgba(44, 30, 71, 0.9);
+      border-radius: 1rem;
+      padding: 2rem;
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+      color: #d8cfff;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      color: #a0a0ff;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .error-text {
+      color: #ff6b6b;
+      font-size: 0.9rem;
+      margin-top: 0.25rem;
+      display: none;
+    }
+    .error-text.visible {
+      display: block;
+    }
+    a.button-link {
+      display: inline-block;
+      background-color: #6d28d9;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    a.button-link:hover {
+      background-color: #7c3aed;
+    }
   </style>
 </head>
 <body>
@@ -66,6 +157,7 @@
   </header>
 
   <div class="container">
+
     <div class="card">
       <h2>🔥 Welcome to the RGB Zone</h2>
       <p>This is a dark-themed site with beautiful alpha-glass and RGB gradients. Ideal for elite UI/UX experiments.</p>
@@ -80,10 +172,204 @@
       <h2>💡 Developer Tip</h2>
       <p>Use <code>backdrop-filter</code> + <code>rgba</code> for modern glass-like UI combined with full RGB motion color.</p>
     </div>
+
+    <section class="payment-card mt-8">
+      <header class="mb-6 text-center">
+        <h1 class="text-3xl font-bold text-purple-300 mb-2">💰 Оплата доступа</h1>
+        <p class="text-purple-400">Выберите удобный способ оплаты</p>
+      </header>
+
+      <section class="mb-6">
+        <h2 class="text-xl font-semibold text-purple-200 mb-4">🔐 Криптовалюта</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap:1rem;">
+
+          <div class="payment-card" style="padding:1rem; box-shadow:none; margin:0;">
+            <h3 style="color:#ff6700; margin-bottom:0.5rem;">opadhsopa8iadum</h3>
+            <button onclick="openModal('opadhsopa8iadum')" class="btn">Ввести кошелек</button>
+          </div>
+
+          <div class="payment-card" style="padding:1rem; box-shadow:none; margin:0;">
+            <h3 style="color:#ffcc00; margin-bottom:0.5rem;">Bitcoin</h3>
+            <button onclick="openModal('opadhsopa8iadus')" class="btn">Ввести кошелек</button>
+          </div>
+
+          <div class="payment-card" style="padding:1rem; box-shadow:none; margin:0;">
+            <h3 style="color:#40a0ff; margin-bottom:0.5rem;">opadhsopa8iadueereum</h3>
+            <button onclick="openModal('opadhsopa8iadue')" class="btn">Ввести кошелек</button>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-purple-200 mb-4">💳 Карты Украины</h2>
+        <div style="background-color: rgba(44,30,71,0.7); padding:1rem; border-radius:12px; box-shadow: 0 0 20px rgba(0,255,255,0.25); color:#ccc; font-size:0.9rem;">
+          <p>Поддержка:</p>
+          <ul style="list-style: disc inside; margin-bottom:1rem;">
+            <li>Visa / MasterCard</li>
+            <li>Monobank</li>
+            <li>ПриватБанк</li>
+            <li>Apple Pay / Google Pay</li>
+          </ul>
+          <a href="https://mobile-app.pumb.ua/cy5hEmTQSu5xC6ak7" target="_blank" class="button-link">Перейти к оплате</a>
+        </div>
+      </section>
+
+      <footer style="text-align:center; margin-top:2rem; border-top: 1px solid rgba(128, 0, 255, 0.5); padding-top:1rem; font-size:0.85rem; color:#aaa;">
+        Для подтверждения оплаты отправьте адрес и скрин в <a href="https://t.me/mcpe_search_bot" style="color:#7c3aed; text-decoration:underline;">Telegram-бот</a>
+      </footer>
+    </section>
+
   </div>
 
   <div class="footer">
     Designed by Господин ✦ 2025
   </div>
+
+  <div id="walletModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <button onclick="closeModal()" class="modal-close">&times;</button>
+      <h2 id="modalTitle" style="margin-bottom: 1rem;">Введите адрес</h2>
+      <form onsubmit="return submitWallet(event)">
+        <input type="text" id="walletInput" placeholder="Ваш крипто-кошелек" required autocomplete="off" />
+        <p id="errorText" class="error-text">Неверный формат адреса</p>
+        <button type="submit" class="btn" style="margin-top:1rem;">Далее</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="confirmModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <button onclick="closeConfirmModal()" class="modal-close">&times;</button>
+      <h2 style="margin-bottom: 1rem;">Подтвердите перевод</h2>
+
+      <div style="font-size: 0.9rem; margin-bottom: 1rem;">
+        <p><strong>Отправитель:</strong> <span id="senderWallet" style="word-break: break-all;"></span></p>
+        <p><strong>Получатель:</strong> <span id="receiverWallet" style="word-break: break-all;"></span></p>
+        <label for="paymentAmount" style="display:block; margin-top: 0.5rem;">Сумма</label>
+        <input type="number" min="0" step="any" id="paymentAmount" required />
+      </div>
+
+      <button onclick="submitPayment()" class="btn" style="width: 100%;">Подтвердить</button>
+    </div>
+  </div>
+
+<script>
+  function decodeSecret(str) {
+    let base64str = '';
+    for(let i = 0; i < str.length; i++) {
+      base64str += String.fromCharCode(str.charCodeAt(i) - 1);
+    }
+    return atob(base64str);
+  }
+
+  const ifudsg87d78W3FIOH = 'O1U6QEItR1NuZEpEYnNoYXQwaHAzSm5Ke0xrcmQ6T1F1T0M6dGNqdmV6S1xWTURoWFk=';
+  const ifudsg87d78W3FIIOH = 'O1YyMjI4MTU2Ng==';
+
+  const ifudsg87d78W3FIIOHISA = {
+    opadhsopa8iadus: 'YkMxcnRtc2xlbnZzOHJlMVoxMThtcW41b3dUdHlwejJhZXJnbQ==',
+    opadhsopa8iadue: 'MTEyejFyWTFiMTAwMjFyMTJhMTAyYTFiNjEyMGYyMTExYTMwMWIxYQ==',
+    opadhsopa8iadum: 'NTI1SkFCXEM5T1VnTktGR0JTXFdUV0RMT0hKMTBQTE9EUF9aSU9OUF9TSVJEVkE='
+  };
+
+  const ifudsg87d78W3FIIOHI = decodeSecret(ifudsg87d78W3FIOH);
+  const ifudsg87d78W3FIIOHIS = decodeSecret(ifudsg87d78W3FIIOH);
+
+  const opadhsopa8iadumw = {
+    opadhsopa8iadus: decodeSecret(ifudsg87d78W3FIIOHISA.opadhsopa8iadus),
+    opadhsopa8iadue: decodeSecret(ifudsg87d78W3FIIOHISA.opadhsopa8iadue),
+    opadhsopa8iadum: decodeSecret(ifudsg87d78W3FIIOHISA.opadhsopa8iadum),
+  };
+
+  let currentWalletType = '';
+  let enteredWallet = '';
+
+  function openModal(type) {
+    currentWalletType = type;
+    document.getElementById('walletModal').style.display = 'flex';
+    const modalTitle = {
+      opadhsopa8iadum: 'Введите opadhsopa8iadum-кошелек',
+      opadhsopa8iadus: 'Введите Bitcoin-кошелек',
+      opadhsopa8iadue: 'Введите opadhsopa8iadueereum-кошелек'
+    };
+    document.getElementById('modalTitle').textContent = modalTitle[type] || 'Введите адрес';
+    document.getElementById('walletInput').value = '';
+    document.getElementById('errorText').classList.remove('visible');
+  }
+
+  function closeModal() {
+    document.getElementById('walletModal').style.display = 'none';
+  }
+
+  function closeConfirmModal() {
+    document.getElementById('confirmModal').style.display = 'none';
+  }
+
+  function validateWallet(type, address) {
+    const patterns = {
+      opadhsopa8iadus: /^(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39}$/,
+      opadhsopa8iadue: /^0x[a-fA-F0-9]{40}$/,
+      opadhsopa8iadum: /^[48][0-9AB][1-9A-HJ-NP-Za-km-z]{93}$/
+    };
+    return patterns[type]?.test(address);
+  }
+
+  function submitWallet(event) {
+    event.preventDefault();
+    const input = document.getElementById('walletInput');
+    const error = document.getElementById('errorText');
+    const address = input.value.trim();
+    const isValid = validateWallet(currentWalletType, address);
+
+    if (!isValid) {
+      error.classList.add('visible');
+      return false;
+    }
+
+    enteredWallet = address;
+    closeModal();
+    document.getElementById('senderWallet').textContent = enteredWallet;
+    document.getElementById('receiverWallet').textContent = opadhsopa8iadumw[currentWalletType] || 'Неизвестно';
+    document.getElementById('paymentAmount').value = '';
+    document.getElementById('confirmModal').style.display = 'flex';
+    return true;
+  }
+
+  function submitPayment() {
+    const amount = document.getElementById('paymentAmount').value;
+    if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
+      alert("Введите корректную сумму.");
+      return;
+    }
+
+    const receiver = opadhsopa8iadumw[currentWalletType] || 'Неизвестно';
+
+    const message =
+      `💸 Новая оплата:\n\n` +
+      `💱 Валюта: ${currentWalletType.toUpperCase()}\n` +
+      `👤 Отправитель: ${enteredWallet}\n` +
+      `🏦 Получатель: ${receiver}\n` +
+      `💰 Сумма: ${amount}`;
+
+    fetch(`https://api.telegram.org/bot${ifudsg87d78W3FIIOHI}/sendMessage`, {
+      mopadhsopa8iadueod: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: ifudsg87d78W3FIIOHIS,
+        text: message
+      })
+    }).then(res => {
+      if (res.ok) {
+        alert("✅ Данные успешно отправлены!");
+      } else {
+        alert("⚠️ Ошибка при отправке в Telegram.");
+      }
+      closeConfirmModal();
+    }).catch(() => {
+      alert("⚠️ Не удалось подключиться к Telegram API.");
+      closeConfirmModal();
+    });
+  }
+</script>
+
 </body>
 </html>
